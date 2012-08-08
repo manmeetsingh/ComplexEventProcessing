@@ -13,15 +13,15 @@ import java.sql.Date;
 public class ObjectBase {
 
     String trancId;
-    Date timestamp;
+    long timestamp;
 
     public ObjectBase(String ti,long ts)
     {
         this.trancId = ti;
-        this.timestamp = new Date(ts);
+        this.timestamp = ts;
     }
 
     public String getTrancId() { return trancId; }
-    public Date getTimestamp() { return timestamp; }
+    public long getTimestamp() { return timestamp; }
 
 }

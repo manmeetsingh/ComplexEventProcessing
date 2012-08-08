@@ -50,7 +50,7 @@ public class SampleTransactionGenerator implements Events{
         public void run() {
 
             int i;
-            for(i = 0;i<20;i++) {
+            for(i = 0;i<5;i++) {
 
                 String trancId = "tranc" + generator.nextInt(1000);
                 long t;
