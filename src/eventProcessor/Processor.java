@@ -21,7 +21,7 @@ public class Processor {
     EPServiceProvider cep = EPServiceProviderManager.getProvider("myCEPEngine", cepConfig);
     cepRT = cep.getEPRuntime();
     EPAdministrator cepAdm = cep.getEPAdministrator();
-    EPStatement cepStatement = cepAdm.createEPL(RuleA.ruleA());
+    EPStatement cepStatement = cepAdm.createEPL((new RuleA()).getRule());
     cepStatement.addListener(new AListener());
 	}
 

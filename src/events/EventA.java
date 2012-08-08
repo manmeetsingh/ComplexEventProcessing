@@ -6,9 +6,9 @@ import objects.A;
 
 import com.espertech.esper.client.EPRuntime;
 
-public class EventA {
+public class EventA implements Events {
 	   private static Random generator = new Random();
-	public static void eventA(EPRuntime cepRT){
+	public void  invoke(EPRuntime cepRT){
 		 A a=new A(5,generator.nextInt(10));
 	        System.out.println("Sending tick:" + a);
 	        cepRT.sendEvent(a);
