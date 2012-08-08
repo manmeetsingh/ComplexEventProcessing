@@ -10,19 +10,32 @@ import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
 import objects.*;
-import rules.RuleA;
+import rules.*;
 import listeners.*;
 
 public class Processor {
 	public static EPRuntime cepRT;
 	public static void executeRules(){
+		
+		
     Configuration cepConfig = new Configuration();
-    cepConfig.addEventType("A", A.class.getName());
+    
+    
+    cepConfig.addEventType("OrderCreated", OrderCreated.class.getName());
+    cepConfig.addEventType("PurchaseOrderRaised", PurchaseOrderRaised.class.getName());
+    cepConfig.addEventType("ShippingDone", ShippingDone.class.getName());
+    
+    
     EPServiceProvider cep = EPServiceProviderManager.getProvider("myCEPEngine", cepConfig);
     cepRT = cep.getEPRuntime();
     EPAdministrator cepAdm = cep.getEPAdministrator();
-    EPStatement cepStatement = cepAdm.createEPL((new RuleA()).getRule());
-    cepStatement.addListener(new AListener());
+    
+    
+    EPStatement cepStatement = cepAdm.createEPL((new TransactionRule()).getRule());
+    cepStatement.addListener(new transactionListener());
+    
+    
+    
 	}
 
 
