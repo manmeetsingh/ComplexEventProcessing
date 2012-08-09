@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<CEPs> <CEP name="transaction"><events><event type="eventType.OrderCreated"/><event type="eventType.PurchaseOrderRaised"/><event type="eventType.ShippingDone"/></events><rules><rule type="rules.TransactionRule"><listener>listeners.transactionListener</listener></rule></rules></CEP></CEPs>
+<CEPs><CEP name="transaction"><events><event type="eventType.OrderCreated"/><event type="eventType.PurchaseOrderRaised"/><event type="eventType.ShippingDone"/></events><rules><rule type="rules.TransactionRule"><listener type="listeners.transactionListener"/></rule></rules></CEP></CEPs>

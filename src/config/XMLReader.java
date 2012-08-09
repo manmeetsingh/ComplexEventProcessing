@@ -19,9 +19,7 @@ public class XMLReader {
 	
 	static ArrayList<CEP> cepArrayList;
 
-	public static void main(String args[]) {
-		importXML("/home/mohammadsalim/Desktop/conf.xml");
-	}
+	
 	
 	public static ArrayList<CEP> getCepArrayList() {
 		return cepArrayList;
@@ -67,7 +65,7 @@ public class XMLReader {
 					NodeList listenerList = ruleList.item(j).getChildNodes();
 					for (int k = 0; k < listenerList.getLength(); k++) {
 						cep.rules.get(index).addListener(
-								listenerList.item(k).getTextContent());
+								((Element) listenerList.item(k)).getAttribute("type"));
 					}
 
 				}

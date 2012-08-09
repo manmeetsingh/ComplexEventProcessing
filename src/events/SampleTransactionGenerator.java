@@ -9,8 +9,6 @@ import eventType.ShippingDone;
 import java.util.Random;
 import java.lang.Runnable;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Created by IntelliJ IDEA.
  * User: monojitdey

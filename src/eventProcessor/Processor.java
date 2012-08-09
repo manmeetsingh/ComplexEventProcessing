@@ -23,17 +23,18 @@ import listeners.*;
 public class Processor {
 	public static EPRuntime cepRT;
 
-	public static void executeRules() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		//Reading Config File
+	public static void executeRules() throws InstantiationException,
+			IllegalAccessException, ClassNotFoundException {
+		// Reading Config File
 		XMLReader.importXML("conf.xml");
 		ArrayList<CEP> cepData = XMLReader.getCepArrayList();
-		Iterator<CEP> cepIterator =cepData.iterator();
-		while(cepIterator.hasNext()) {
-			CEP nextCEP=cepIterator.next();
+		Iterator<CEP> cepIterator = cepData.iterator();
+		while (cepIterator.hasNext()) {
+			CEP nextCEP = cepIterator.next();
 			ArrayList<String> events = nextCEP.getEvents();
 			ArrayList<CEP.Rules> rules = nextCEP.getRules();
 			Configuration cepConfig = new Configuration();
-			//Reading Events
+			// Reading Events
 			Iterator<String> eventIterator = events.iterator();
 			while (eventIterator.hasNext()) {
 				String className = eventIterator.next();
@@ -44,17 +45,19 @@ public class Processor {
 					"myCEPEngine", cepConfig);
 			cepRT = cep.getEPRuntime();
 			EPAdministrator cepAdm = cep.getEPAdministrator();
-			//Reading Rules			
-			Iterator<CEP.Rules> ruleIterator=rules.iterator();
-			while(ruleIterator.hasNext()){
-				CEP.Rules nextRuleObject=ruleIterator.next();
-				Rules nextRule=(Rules)Class.forName(nextRuleObject.getRName()).newInstance();
-				EPStatement cepStatement = cepAdm.createEPL(nextRule
-					.getRule());
-				//Reading Listeners
-				Iterator<String> listenerIterator=nextRuleObject.getListeners().iterator();
-				while(listenerIterator.hasNext()){
-					UpdateListener listener=(UpdateListener)Class.forName(listenerIterator.next()).newInstance();
+			// Reading Rules
+			Iterator<CEP.Rules> ruleIterator = rules.iterator();
+			while (ruleIterator.hasNext()) {
+				CEP.Rules nextRuleObject = ruleIterator.next();
+				Rules nextRule = (Rules) Class.forName(
+						nextRuleObject.getRName()).newInstance();
+				EPStatement cepStatement = cepAdm.createEPL(nextRule.getRule());
+				// Reading Listeners
+				Iterator<String> listenerIterator = nextRuleObject
+						.getListeners().iterator();
+				while (listenerIterator.hasNext()) {
+					UpdateListener listener = (UpdateListener) Class.forName(
+							listenerIterator.next()).newInstance();
 					cepStatement.addListener(listener);
 				}
 			}
