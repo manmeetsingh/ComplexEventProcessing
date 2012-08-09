@@ -1,9 +1,10 @@
 package events;
 
 import com.espertech.esper.client.EPRuntime;
-import objects.OrderCreated;
-import objects.PurchaseOrderRaised;
-import objects.ShippingDone;
+
+import eventType.OrderCreated;
+import eventType.PurchaseOrderRaised;
+import eventType.ShippingDone;
 
 import java.util.Random;
 import java.lang.Runnable;
